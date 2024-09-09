@@ -1,11 +1,2 @@
-<div align="center">
-
-<img src="public/android-chrome-192x192.png" align="center" width="120px" height="120px">
-
-<h3>Website</h3>
-<p>My personal website.</p>
-
-[![Built with Astro](https://astro.badg.es/v2/built-with-astro/tiny.svg)](https://astro.build)
-![GitHub deployments](https://img.shields.io/github/deployments/yehezkieldio/website/Production?style=flat&logo=vercel&label=Deployment)
-
-</div>
+<a href="https://starlight.astro.build"><img src="https://astro.badg.es/v2/built-with-starlight/tiny.svg" alt="Built with Starlight" width="140" height="20"></a>
+<img alt="GitHub deployments" src="https://img.shields.io/github/deployments/yehezkieldio/website/Production?style=for-the-badge&logo=vercel&label=Deployment" width="140" height="20">
