@@ -8,7 +8,7 @@ const projects = defineCollection({
         slug: z.string(),
         description: z.string(),
         tags: z.array(z.string()),
-        createdAt: z.coerce.date()
+        isHighlighted: z.boolean().optional()
     })
 });
 

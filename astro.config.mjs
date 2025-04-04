@@ -6,19 +6,16 @@ import { defineConfig } from "astro/config";
 
 export default defineConfig({
     site: "https://yehezkieldio.vercel.app",
-    experimental: {
-        contentIntellisense: true
-    },
     compressHTML: false,
+    integrations: [
+        sitemap(),
+        mdx({
+            syntaxHighlight: "shiki",
+            shikiConfig: { theme: "catppuccin-mocha" }
+        })
+    ],
     vite: {
-        plugins: [
-            sitemap(),
-            tailwindcss(),
-            mdx({
-                syntaxHighlight: "shiki",
-                shikiConfig: { theme: "catppuccin-mocha" }
-            })
-        ],
+        plugins: [tailwindcss()],
         css: {
             transformer: "lightningcss"
         },

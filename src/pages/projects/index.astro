@@ -1,0 +1,24 @@
+---
+import ContentFadeIn from "#/components/content-fade-in.astro";
+import ContentWrapper from "#/components/content-wrapper.astro";
+import BaseLayout from "#/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
+---
+
+<BaseLayout>
+    <ContentWrapper>
+        <ContentFadeIn>
+            {
+                projects.map((project) => (
+                    <>
+                        <a href="/" class="text-muted-foreground hover:text-foreground">
+                            <strong>{project.data.title}</strong> - {project.data.description}
+                        </a>
+                    </>
+                ))
+            }
+        </ContentFadeIn>
+    </ContentWrapper>
+</BaseLayout>
