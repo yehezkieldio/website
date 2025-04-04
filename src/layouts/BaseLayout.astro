@@ -4,6 +4,7 @@ import "../styles/global.css";
 import "@fontsource-variable/manrope";
 import "@fontsource-variable/geist-mono";
 import "@fontsource-variable/geist";
+import Navbar from "#/components/navbar.astro";
 import { ClientRouter } from "astro:transitions";
 ---
 
@@ -20,6 +21,7 @@ import { ClientRouter } from "astro:transitions";
     <body>
         <div class="relative min-h-screen">
             <div class="relative flex min-h-screen w-full flex-col">
+                <Navbar />
                 <slot />
             </div>
         </div>

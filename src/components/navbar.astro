@@ -1,0 +1,47 @@
+---
+const currentPathname: string = Astro.url.pathname;
+
+interface NavLink {
+    href: string;
+    label: string;
+    highlightPaths?: string[];
+}
+
+const navLinks: NavLink[] = [
+    { href: "/", label: "Home" },
+    // { href: "/blog", label: "Writing", highlightPaths: ["/blog", "/notes"] },
+    { href: "/projects", label: "Projects" }
+];
+
+function isActive(link: NavLink): boolean {
+    if (currentPathname === link.href) return true;
+    if (link.highlightPaths?.includes(currentPathname)) return true;
+    if (currentPathname.startsWith(link.href) && link.href !== "/") return true;
+
+    return false;
+}
+---
+
+<nav class="z-[2] font-sans" transition:name="fade">
+    <div class="relative z-[2] mx-auto w-full max-w-screen-md flex-1 px-4 pt-8 md:px-0">
+        <div class="flex flex-row items-center gap-4">
+            {
+                navLinks.map((link: NavLink) => (
+                    <a href={link.href}>
+                        <span
+                            transition:name={`nav-${link.href}`}
+                            class:list={[
+                                "flex items-center space-x-2 transition-all duration-300",
+                                isActive(link)
+                                    ? "text-foreground"
+                                    : "text-muted-foreground/80 hover:text-muted-foreground/60"
+                            ]}
+                        >
+                            {link.label}
+                        </span>
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</nav>

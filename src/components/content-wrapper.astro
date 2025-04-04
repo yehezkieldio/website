@@ -1,0 +1,29 @@
+---
+let shouldRemoveTopPadding = false;
+const currentPathname: string = Astro.url.pathname;
+
+if (currentPathname.match(/^\/projects\/[^\\/]+\/?$/)) {
+    shouldRemoveTopPadding = true;
+}
+---
+
+<div
+    class:list={[
+        "relative",
+        "z-[2]",
+        "mx-auto",
+        "w-full",
+        "max-w-screen-md",
+        "flex-1",
+        "pb-14",
+        "md:px-0",
+        {
+            "pt-0": shouldRemoveTopPadding,
+            "pt-14": !shouldRemoveTopPadding
+        }
+    ]}
+>
+    <div class="flex items-center justify-between">
+        <slot />
+    </div>
+</div>
