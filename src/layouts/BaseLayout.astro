@@ -1,5 +1,10 @@
 ---
 import "../styles/global.css";
+
+import "@fontsource-variable/manrope";
+import "@fontsource-variable/geist-mono";
+import "@fontsource-variable/geist";
+import { ClientRouter } from "astro:transitions";
 ---
 
 <!doctype html>
@@ -10,8 +15,13 @@ import "../styles/global.css";
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
         <title>Yehezkiel Dio Sinolungan</title>
+        <ClientRouter fallback="swap" />
     </head>
     <body>
-        <slot />
+        <div class="relative min-h-screen">
+            <div class="relative flex min-h-screen w-full flex-col">
+                <slot />
+            </div>
+        </div>
     </body>
 </html>
