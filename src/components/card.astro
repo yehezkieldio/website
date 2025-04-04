@@ -1,0 +1,12 @@
+---
+const { class: className } = Astro.props;
+
+const base =
+    "bg-background/50 text-card-foreground hover:bg-primary/5 active:bg-primary/10 border-accent hover:border-foreground/50 active:border-foreground/50 w-full border shadow transition-colors";
+---
+
+<div class:list={[base, className]}>
+    <div class="ml-2 flex items-center justify-between p-4">
+        <slot />
+    </div>
+</div>

@@ -5,20 +5,45 @@ import BaseLayout from "#/layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
 const projects = await getCollection("projects");
+
+const highlightedProjects = projects.filter((project) => {
+    return project.data.isHighlighted;
+});
+
+const nonHighlightedProjects = projects.filter((project) => {
+    return !project.data.isHighlighted;
+});
 ---
 
 <BaseLayout>
     <ContentWrapper>
         <ContentFadeIn>
-            {
-                projects.map((project) => (
-                    <>
-                        <a href="/" class="text-muted-foreground hover:text-foreground">
-                            <strong>{project.data.title}</strong> - {project.data.description}
+            <div class="flex flex-col gap-4">
+                <h1 class="font-display text-xl font-bold tracking-tight">Selected.</h1>
+                {
+                    highlightedProjects.map((project) => (
+                        <a href="/" class="text-muted-foreground/90 group block">
+                            <span class="text-foreground group-hover:text-foreground/80 font-bold">
+                                {project.data.title}
+                            </span>
+                            <span class="group-hover:text-foreground/60">{project.data.description}</span>
                         </a>
-                    </>
-                ))
-            }
+                    ))
+                }
+            </div>
+            <div class="mt-8 flex flex-col gap-4">
+                <h1 class="font-display text-xl font-bold tracking-tight">All.</h1>
+                {
+                    nonHighlightedProjects.map((project) => (
+                        <a href="/" class="text-muted-foreground/90 group block">
+                            <span class="text-foreground group-hover:text-foreground/80 font-bold">
+                                {project.data.title}
+                            </span>
+                            <span class="group-hover:text-foreground/60">{project.data.description}</span>
+                        </a>
+                    ))
+                }
+            </div>
         </ContentFadeIn>
     </ContentWrapper>
 </BaseLayout>
