@@ -3,19 +3,16 @@
 </article>
 
 <script>
-    import { animate, stagger } from "motion";
+    import { animate } from "motion";
 
     document.addEventListener("astro:page-load", () => {
         const animation = {
             opacity: [0, 1],
-            y: [0.2, 0],
-            scale: [0.98, 1]
+            y: [0.2, 0]
         };
 
         const options = {
-            duration: 0.6,
-            easing: [0.32, 0.72, 0, 1],
-            delay: stagger(0.1)
+            duration: 0.6
         };
 
         animate("#fade-in", animation, options);
