@@ -8,7 +8,8 @@ const projects = defineCollection({
         slug: z.string(),
         description: z.string(),
         tags: z.array(z.string()),
-        isHighlighted: z.boolean().optional()
+        isHighlighted: z.boolean().optional(),
+        type: z.enum(["apps", "docs", "libs", "tools", "sites", "other"])
     })
 });
 

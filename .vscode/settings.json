@@ -11,9 +11,6 @@
     "files.associations": {
         "*.css": "tailwindcss"
     },
-    "editor.quickSuggestions": {
-        "strings": "on"
-    },
     "[yaml]": {
         "editor.defaultFormatter": "redhat.vscode-yaml",
         "editor.tabSize": 4
