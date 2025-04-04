@@ -1,0 +1,11 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"li">;
+
+const props = Astro.props;
+---
+
+<li class="mt-2 ml-2 list-item" {...props}>
+    <slot />
+</li>
