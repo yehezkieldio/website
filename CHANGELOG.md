@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [0.1.1](https://github.com/yehezkieldio/website/compare/v0.1.0...v0.1.1) (2025-04-04)
+
+## <!-- 4 -->Refactor
+
+- **vercel:** Add vercel analytics and speed insights ([cb9d7c7](https://github.com/yehezkieldio/website/commit/cb9d7c74702bcfcd5b9d4968359a5c975c0d7994))
+
 # [0.1.0](https://github.com/yehezkieldio/website/tree/v0.1.0) (2025-04-04)
 
 ## <!-- 0 -->Features
