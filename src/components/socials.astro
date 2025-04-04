@@ -1,0 +1,55 @@
+---
+export const socials = {
+    github: "https://github.com/yehezkieldio",
+    x: "https://x.com/yhezkieldio",
+    instagram: "https://www.instagram.com/yhezkiel.dio",
+    linkedin: "https://www.linkedin.com/in/yehezkieldio"
+};
+
+interface SocialLink {
+    name: string;
+    href: string;
+}
+
+const socialLinks: SocialLink[] = [
+    { name: "GitHub", href: socials.github },
+    { name: "X", href: socials.x },
+    { name: "Instagram", href: socials.instagram },
+    { name: "LinkedIn", href: socials.linkedin }
+];
+
+const email = "yehezkieldio@proton.me";
+---
+
+<div class="text-foreground/80 mt-8 mb-10 space-y-3.5">
+    <span class="text-foreground/80">Follow me on </span>
+    {
+        socialLinks.map((social) => (
+            <a class="inline-block" target="_blank" rel="noopener noreferrer" href={social.href}>
+                <span class="text-foreground hover:text-primary underline">{social.name}</span>
+            </a>
+        ))
+    }
+
+    <p class="text-foreground/80 mt-1 leading-7">
+        <span>Or mail me at </span>
+        <a
+            href={`mailto:${email}`}
+            class="text-foreground hover:text-foreground/70 underline"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            {email}
+        </a>
+    </p>
+</div>
+
+<style>
+    a + a::before {
+        content: ", ";
+    }
+
+    a:first-of-type::before {
+        content: "";
+    }
+</style>
