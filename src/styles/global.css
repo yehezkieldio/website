@@ -107,6 +107,10 @@
     @apply text-xs leading-5 tracking-tight;
 }
 
+@utility text-link {
+    @apply text-foreground hover:text-foreground/70 inline-block underline;
+}
+
 @layer base {
     * {
         @apply border-border outline-ring/50 text-pretty antialiased;
