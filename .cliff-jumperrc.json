@@ -1,0 +1,9 @@
+{
+    "$schema": "https://raw.githubusercontent.com/favware/cliff-jumper/main/assets/cliff-jumper.schema.json",
+    "name": "website",
+    "packagePath": ".",
+    "pushTag": true,
+    "gitRepo": "yehezkieldio/website",
+    "githubRelease": true,
+    "githubReleaseLatest": true
+}
