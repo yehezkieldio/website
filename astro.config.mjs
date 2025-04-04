@@ -1,4 +1,5 @@
 // @ts-check
+import mdx from "@astrojs/mdx";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 
@@ -8,7 +9,13 @@ export default defineConfig({
     },
     compressHTML: false,
     vite: {
-        plugins: [tailwindcss()],
+        plugins: [
+            tailwindcss(),
+            mdx({
+                syntaxHighlight: "shiki",
+                shikiConfig: { theme: "catppuccin-mocha" }
+            })
+        ],
         css: {
             transformer: "lightningcss"
         },
