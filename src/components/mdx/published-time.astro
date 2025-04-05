@@ -1,0 +1,7 @@
+---
+import { formatter } from "#/lib/formatter";
+
+const { date } = Astro.props;
+---
+
+<div>Published {formatter.date(new Date(date))}</div>

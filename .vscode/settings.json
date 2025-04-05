@@ -1,5 +1,4 @@
 {
-    "astro.content-intellisense": true,
     "typescript.tsdk": "node_modules/typescript/lib",
     "typescript.enablePromptUseWorkspaceTsdk": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -11,9 +10,6 @@
     "eslint.validate": ["javascript", "javascriptreact", "astro", "typescript", "typescriptreact"],
     "files.associations": {
         "*.css": "tailwindcss"
-    },
-    "editor.quickSuggestions": {
-        "strings": "on"
     },
     "[yaml]": {
         "editor.defaultFormatter": "redhat.vscode-yaml",

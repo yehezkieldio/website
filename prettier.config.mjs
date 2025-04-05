@@ -11,6 +11,7 @@ const config = {
     quoteProps: "consistent",
     plugins: ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
     tailwindFunctions: ["cn"],
+    htmlWhitespaceSensitivity: "ignore",
     overrides: [
         {
             files: ["**/.vscode/*.json", "**/tsconfig.json", "**/tsconfig.*.json"],

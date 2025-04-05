@@ -1,0 +1,13 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"table">;
+
+const props = Astro.props;
+---
+
+<div class="my-6 w-full overflow-hidden overflow-y-auto">
+    <table class="w-full overflow-hidden" {...props}>
+        <slot />
+    </table>
+</div>

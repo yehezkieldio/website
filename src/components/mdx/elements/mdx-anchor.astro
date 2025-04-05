@@ -1,0 +1,11 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"a">;
+
+const props = Astro.props;
+---
+
+<a target="_blank" rel="noopener noreferrer nofollow" class="text-foreground hover:text-primary underline" {...props}>
+    <slot />
+</a>

@@ -1,21 +1,21 @@
 // @ts-check
 import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-    experimental: {
-        contentIntellisense: true
-    },
+    site: "https://yehezkieldio.vercel.app",
     compressHTML: false,
+    integrations: [
+        sitemap(),
+        mdx({
+            syntaxHighlight: "shiki",
+            shikiConfig: { theme: "catppuccin-mocha" }
+        })
+    ],
     vite: {
-        plugins: [
-            tailwindcss(),
-            mdx({
-                syntaxHighlight: "shiki",
-                shikiConfig: { theme: "catppuccin-mocha" }
-            })
-        ],
+        plugins: [tailwindcss()],
         css: {
             transformer: "lightningcss"
         },

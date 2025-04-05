@@ -4,7 +4,7 @@ import "../styles/global.css";
 import "@fontsource-variable/manrope";
 import "@fontsource-variable/geist-mono";
 import "@fontsource-variable/geist";
-import Analytics from '@vercel/analytics/astro';
+import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import Navbar from "#/components/navbar.astro";
 import { ClientRouter } from "astro:transitions";
@@ -15,9 +15,29 @@ import { ClientRouter } from "astro:transitions";
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="generator" content={Astro.generator} />
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+
         <title>Yehezkiel Dio Sinolungan</title>
+        <meta name="title" content="Yehezkiel Dio Sinolungan" />
+        <meta name="description" content="Software Engineer. Web Developer. Open Source Enthusiast." />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:title" content="Yehezkiel Dio Sinolungan" />
+        <meta property="og:description" content="Software Engineer. Web Developer. Open Source Enthusiast." />
+        <meta property="og:image" content="/android-chrome-512x512.png" />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={Astro.url} />
+        <meta property="twitter:title" content="Yehezkiel Dio Sinolungan" />
+        <meta property="twitter:description" content="Software Engineer. Web Developer. Open Source Enthusiast." />
+        <meta property="twitter:image" content="/android-chrome-512x512.png" />
+
+        <meta name="generator" content={Astro.generator} />
         <ClientRouter fallback="swap" />
         <SpeedInsights />
         <Analytics />

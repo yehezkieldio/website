@@ -2,7 +2,6 @@
 import avatar from "#/assets/avatar.jpg";
 import ContentFadeIn from "#/components/content-fade-in.astro";
 import ContentWrapper from "#/components/content-wrapper.astro";
-import Socials from "#/components/socials.astro";
 import BaseLayout from "#/layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 ---
@@ -29,7 +28,22 @@ import { Image } from "astro:assets";
                 front-end, back-end, and devops technologies, though I don&apos;t consider myself an expert in any
                 specific area.
             </p>
-            <Socials />
+            <p class="text-foreground/70 group [&>a]:text-link">
+                <span>Connect on&nbsp;</span>
+                <a href="https://x.com/yhezkieldio" target="_blank" rel="noopener noreferrer">X</a>
+                <span>&nbsp;·&nbsp;</span>
+                <a href="https://github.com/yehezkieldio" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <span>&nbsp;·&nbsp;</span>
+                <a href="https://www.linkedin.com/in/yehezkieldio" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+                <span class="hidden sm:inline">— or send me an email at</span>
+                <br class="sm:hidden" />
+                <span class="sm:hidden">or send me an email at</span>
+                <a href="mailto:yehezkieldio@proton.me" target="_blank" rel="noopener noreferrer">
+                    yehezkieldio@proton.me
+                </a>
+            </p>
             <p class="text-muted-foreground/50 mt-8 text-xs leading-7 md:text-sm">
                 MIT 2025-PRESENT © Yehezkiel Dio Sinolungan
             </p>
