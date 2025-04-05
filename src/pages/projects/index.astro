@@ -3,70 +3,69 @@ import Card from "#/components/card.astro";
 import ContentFadeIn from "#/components/content-fade-in.astro";
 import ContentWrapper from "#/components/content-wrapper.astro";
 import IconChevronRight from "#/components/icon-chevron-right.astro";
+import { type ProjectType, projectTypeOrder } from "#/content.config";
 import BaseLayout from "#/layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
 const projects = await getCollection("projects");
 
-const featuredProjects = projects
-    .filter((project) => project.data.isHighlighted)
-    .sort((a, b) => (b.data.createdAt?.getTime() ?? 0) - (a.data.createdAt?.getTime() ?? 0));
-const allProjects = projects
-    .filter((project) => !project.data.isHighlighted)
-    .sort((a, b) => (b.data.createdAt?.getTime() ?? 0) - (a.data.createdAt?.getTime() ?? 0));
+const projectsByType = projects.reduce(
+    (acc, project) => {
+        const type = project.data.type;
+        if (!acc[type]) {
+            acc[type] = [];
+        }
+        acc[type].push(project);
+        return acc;
+    },
+    {} as Record<string, typeof projects>
+);
+
+Object.keys(projectsByType).forEach((type) => {
+    projectsByType[type].sort((a, b) => (b.data.createdAt?.getTime() ?? 0) - (a.data.createdAt?.getTime() ?? 0));
+});
+
+const typeDisplayNames: Record<ProjectType, string> = {
+    apps: "Applications",
+    tools: "Tools",
+    libs: "Libraries",
+    other: "Others"
+};
+
+const orderedTypes = projectTypeOrder.filter((type) => projectsByType[type]?.length > 0);
 ---
 
 <BaseLayout>
     <ContentWrapper>
         <ContentFadeIn>
-            <div class="flex flex-col gap-4">
-                <h1 class="font-display scroll-m-20 text-xl font-bold tracking-tight">Featured.</h1>
-                <div class="flex h-full w-full flex-col gap-2 md:flex-row">
-                    {
-                        featuredProjects.map((project) => (
-                            <a href={`/projects/${project.data.slug}`} class="flex flex-1">
-                                <Card>
-                                    <div>
-                                        <h1 class="font-display mb-1">{project.data.title}</h1>
-                                        <p class="text-muted-foreground/80 group-hover:text-muted-foreground active:text-muted-foreground mt-1 font-sans text-sm transition-colors">
-                                            {project.data.description}
-                                        </p>
-                                    </div>
-                                    <div class="text-muted-foreground group-hover:text-foreground mr-2 ml-4 transition-colors">
-                                        <div class="relative h-5 w-5">
-                                            <IconChevronRight />
+            {
+                orderedTypes.map((type) => (
+                    <div class="mb-12 flex flex-col gap-4">
+                        <h1 class="font-display scroll-m-20 text-xl font-bold tracking-tight">
+                            {typeDisplayNames[type]}.
+                        </h1>
+                        <div class="grid grid-cols-1 gap-3 md:grid-cols-2">
+                            {projectsByType[type].map((project) => (
+                                <a href={`/projects/${project.data.slug}`} class="flex">
+                                    <Card>
+                                        <div>
+                                            <h1 class="font-display mb-1">{project.data.title}</h1>
+                                            <p class="text-muted-foreground/80 group-hover:text-muted-foreground active:text-muted-foreground mt-1 font-sans text-sm transition-colors">
+                                                {project.data.description}
+                                            </p>
                                         </div>
-                                    </div>
-                                </Card>
-                            </a>
-                        ))
-                    }
-                </div>
-            </div>
-            <div class="mt-6 flex flex-col gap-4">
-                <h1 class="font-display scroll-m-20 text-xl font-bold tracking-tight">All.</h1>
-                <div class="flex flex-col gap-3">
-                    {
-                        allProjects.map((project) => (
-                            <a href={`/projects/${project.data.slug}`} class="block">
-                                <Card>
-                                    <div>
-                                        <h1 class="font-display mb-1">{project.data.title}</h1>
-                                        <p class="text-muted-foreground/80 group-hover:text-muted-foreground active:text-muted-foreground mt-1 font-sans text-sm transition-colors">
-                                            {project.data.description}
-                                        </p>
-                                    </div>
-                                    <div class="text-muted-foreground group-hover:text-foreground mr-2 ml-4 transition-colors">
-                                        <div class="relative h-5 w-5">
-                                            <IconChevronRight />
+                                        <div class="text-muted-foreground group-hover:text-foreground mr-2 ml-4 transition-colors">
+                                            <div class="relative h-5 w-5">
+                                                <IconChevronRight />
+                                            </div>
                                         </div>
-                                    </div>
-                                </Card>
-                            </a>
-                        ))
-                    }
-                </div>
-            </div>
+                                    </Card>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                ))
+            }
         </ContentFadeIn>
     </ContentWrapper>
 </BaseLayout>
