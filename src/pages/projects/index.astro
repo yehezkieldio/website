@@ -4,6 +4,16 @@ import ContentFadeIn from "#/components/content-fade-in.astro";
 import ContentWrapper from "#/components/content-wrapper.astro";
 import IconChevronRight from "#/components/icon-chevron-right.astro";
 import BaseLayout from "#/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
+const featuredProjects = projects
+    .filter((project) => project.data.isHighlighted)
+    .sort((a, b) => (b.data.createdAt?.getTime() ?? 0) - (a.data.createdAt?.getTime() ?? 0));
+
+const allProjects = projects
+    .filter((project) => !project.data.isHighlighted)
+    .sort((a, b) => (b.data.createdAt?.getTime() ?? 0) - (a.data.createdAt?.getTime() ?? 0));
 ---
 
 <BaseLayout>
@@ -11,102 +21,51 @@ import BaseLayout from "#/layouts/BaseLayout.astro";
         <ContentFadeIn>
             <div class="flex flex-col gap-4">
                 <h1 class="font-display scroll-m-20 text-xl font-bold tracking-tight">Featured.</h1>
-                <div class="flex flex-col gap-2 md:flex-row">
-                    <Card>
-                        <div>
-                            <h1 class="font-display mb-1">TrashTrack</h1>
-                            <p
-                                class="text-muted-foreground/80 group-hover:text-muted-foreground active:text-muted-foreground mt-1 font-sans text-sm transition-colors"
-                            >
-                                A smart waste disposal system that utilizes IoT technology and data analysis to monitor
-                                and sort waste efficiently.
-                            </p>
-                            <p
-                                class="text-muted-foreground/80 group-hover:text-muted-foreground active:text-muted-foreground mt-2 space-x-1 font-sans text-sm transition-colors"
-                            >
-                                <span
-                                    class="bg-muted/20 border-accent text-muted-foreground/80 group-hover:text-muted-foreground/70 active:text-muted-foreground border px-2 py-1 text-xs font-medium"
-                                >
-                                    Capacitor
-                                </span>
-                                <span
-                                    class="bg-muted/20 border-accent text-muted-foreground/80 group-hover:text-muted-foreground/70 active:text-muted-foreground border px-2 py-1 text-xs font-medium"
-                                >
-                                    Espressif
-                                </span>
-                            </p>
-                        </div>
-                        <div class="text-muted-foreground group-hover:text-foreground mr-2 ml-4 transition-colors">
-                            <div class="relative h-5 w-5">
-                                <IconChevronRight />
-                            </div>
-                        </div>
-                    </Card>
-                    <Card>
-                        <div>
-                            <h1 class="font-display mb-1">TrashTrack</h1>
-                            <p
-                                class="text-muted-foreground/80 group-hover:text-muted-foreground active:text-muted-foreground mt-1 font-sans text-sm transition-colors"
-                            >
-                                A smart waste disposal system that utilizes IoT technology and data analysis to monitor
-                                and sort waste efficiently.
-                            </p>
-                            <p
-                                class="text-muted-foreground/80 group-hover:text-muted-foreground active:text-muted-foreground mt-2 space-x-1 font-sans text-sm transition-colors"
-                            >
-                                <span
-                                    class="bg-muted/20 border-accent text-muted-foreground/80 group-hover:text-muted-foreground/70 active:text-muted-foreground border px-2 py-1 text-xs font-medium"
-                                >
-                                    Capacitor
-                                </span>
-                                <span
-                                    class="bg-muted/20 border-accent text-muted-foreground/80 group-hover:text-muted-foreground/70 active:text-muted-foreground border px-2 py-1 text-xs font-medium"
-                                >
-                                    Espressif
-                                </span>
-                            </p>
-                        </div>
-                        <div class="text-muted-foreground group-hover:text-foreground mr-2 ml-4 transition-colors">
-                            <div class="relative h-5 w-5">
-                                <IconChevronRight />
-                            </div>
-                        </div>
-                    </Card>
+                <div class="flex h-full w-full flex-col gap-2 md:flex-row">
+                    {
+                        featuredProjects.map((project) => (
+                            <a href={`/projects/${project.data.slug}`} class="flex flex-1">
+                                <Card>
+                                    <div>
+                                        <h1 class="font-display mb-1">{project.data.title}</h1>
+                                        <p class="text-muted-foreground/80 group-hover:text-muted-foreground active:text-muted-foreground mt-1 font-sans text-sm transition-colors">
+                                            {project.data.description}
+                                        </p>
+                                    </div>
+                                    <div class="text-muted-foreground group-hover:text-foreground mr-2 ml-4 transition-colors">
+                                        <div class="relative h-5 w-5">
+                                            <IconChevronRight />
+                                        </div>
+                                    </div>
+                                </Card>
+                            </a>
+                        ))
+                    }
                 </div>
             </div>
             <div class="mt-6 flex flex-col gap-4">
                 <h1 class="font-display scroll-m-20 text-xl font-bold tracking-tight">All.</h1>
-                <div class="flex flex-col">
-                    <Card>
-                        <div>
-                            <h1 class="font-display mb-1">TrashTrack</h1>
-                            <p
-                                class="text-muted-foreground/80 group-hover:text-muted-foreground active:text-muted-foreground mt-1 font-sans text-sm transition-colors"
-                            >
-                                A smart waste disposal system that utilizes IoT technology and data analysis to monitor
-                                and sort waste efficiently.
-                            </p>
-                            <p
-                                class="text-muted-foreground/80 group-hover:text-muted-foreground active:text-muted-foreground mt-2 space-x-1 font-sans text-sm transition-colors"
-                            >
-                                <span
-                                    class="bg-muted/20 border-accent text-muted-foreground/80 group-hover:text-muted-foreground/70 active:text-muted-foreground border px-2 py-1 text-xs font-medium"
-                                >
-                                    Capacitor
-                                </span>
-                                <span
-                                    class="bg-muted/20 border-accent text-muted-foreground/80 group-hover:text-muted-foreground/70 active:text-muted-foreground border px-2 py-1 text-xs font-medium"
-                                >
-                                    Espressif
-                                </span>
-                            </p>
-                        </div>
-                        <div class="text-muted-foreground group-hover:text-foreground mr-2 ml-4 transition-colors">
-                            <div class="relative h-5 w-5">
-                                <IconChevronRight />
-                            </div>
-                        </div>
-                    </Card>
+
+                <div class="flex flex-col gap-3">
+                    {
+                        allProjects.map((project) => (
+                            <a href={`/projects/${project.data.slug}`} class="block">
+                                <Card>
+                                    <div>
+                                        <h1 class="font-display mb-1">{project.data.title}</h1>
+                                        <p class="text-muted-foreground/80 group-hover:text-muted-foreground active:text-muted-foreground mt-1 font-sans text-sm transition-colors">
+                                            {project.data.description}
+                                        </p>
+                                    </div>
+                                    <div class="text-muted-foreground group-hover:text-foreground mr-2 ml-4 transition-colors">
+                                        <div class="relative h-5 w-5">
+                                            <IconChevronRight />
+                                        </div>
+                                    </div>
+                                </Card>
+                            </a>
+                        ))
+                    }
                 </div>
             </div>
         </ContentFadeIn>
