@@ -7,10 +7,10 @@ import BaseLayout from "#/layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
 const projects = await getCollection("projects");
+
 const featuredProjects = projects
     .filter((project) => project.data.isHighlighted)
     .sort((a, b) => (b.data.createdAt?.getTime() ?? 0) - (a.data.createdAt?.getTime() ?? 0));
-
 const allProjects = projects
     .filter((project) => !project.data.isHighlighted)
     .sort((a, b) => (b.data.createdAt?.getTime() ?? 0) - (a.data.createdAt?.getTime() ?? 0));
@@ -45,7 +45,6 @@ const allProjects = projects
             </div>
             <div class="mt-6 flex flex-col gap-4">
                 <h1 class="font-display scroll-m-20 text-xl font-bold tracking-tight">All.</h1>
-
                 <div class="flex flex-col gap-3">
                     {
                         allProjects.map((project) => (
